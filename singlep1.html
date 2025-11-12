@@ -33,7 +33,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       --radius:16px;
       --shadow:0 18px 40px rgba(0,0,0,.18);
     }
+.arrow-section {
+  text-align: center;
+  padding: 1em 0 .5em 0;
+  color: #6b7280;
+}
 
+.arrow-section i {
+  font-size: 2.8em;
+  animation: bounce 2s infinite;
+}
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{
@@ -260,7 +269,9 @@ style="
     <span>Tap below to <strong>CALL NOW!</strong></span>
   </li>
 </ul>
-
+ <div class="arrow-section">
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
 
       <!-- CTA (update number + tel:) -->
       <a
