@@ -254,7 +254,7 @@ body {
   border: none;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 0 0.3em 0.6em #00C7FF;
+  /* box-shadow: 0 0.3em 0.6em #00C7FF; */
   animation: scaleUp 2s infinite;
   max-width: 95%;
   width: 100%;
