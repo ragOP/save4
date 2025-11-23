@@ -49,7 +49,9 @@
       letter-spacing:.1px;
     }
 
-    /* ======= BLUE BANNER CARD ======= */
+    /* ======================================================
+       BLUE BANNER CARD (WITH DRIBBBLE-STYLE ANIMATIONS)
+       ====================================================== */
     .banner{
       position:relative;
       margin:0 auto 24px;
@@ -63,6 +65,70 @@
       justify-content:space-between;
       min-height:185px;
       box-shadow:0 10px 30px rgba(25, 79, 160, .25);
+
+      /* 3D stage for tilt */
+      perspective:1600px;
+      transform-style:preserve-3d;
+      transition:transform .18s ease;
+    }
+
+    /* glass rim */
+    .banner::before{
+      content:"";
+      position:absolute; inset:0;
+      border-radius:inherit;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 30%),
+        linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,0) 35%);
+      mix-blend-mode:soft-light;
+      pointer-events:none;
+      z-index:2;
+    }
+
+    /* animated shine sweep */
+    .shine{
+      position:absolute; inset:-40% -60%;
+      background:
+        linear-gradient(120deg,
+          rgba(255,255,255,0) 35%,
+          rgba(255,255,255,.35) 45%,
+          rgba(255,255,255,0) 55%);
+      transform:translateX(-60%) rotate(8deg);
+      opacity:.55;
+      filter:blur(6px);
+      animation:shineMove 4.2s ease-in-out infinite;
+      pointer-events:none;
+      z-index:3;
+    }
+    @keyframes shineMove{
+      0%{transform:translateX(-65%) rotate(8deg)}
+      50%{transform:translateX(10%) rotate(8deg)}
+      100%{transform:translateX(-65%) rotate(8deg)}
+    }
+
+    /* neon aura behind car */
+    .aura{
+      position:absolute;
+      right:-40px; bottom:-60px;
+      width:520px; height:380px;
+      background:
+        radial-gradient(circle at 45% 40%, rgba(154,208,255,.9), rgba(47,125,246,.2) 45%, rgba(0,0,0,0) 70%);
+      filter:blur(55px);
+      opacity:.9;
+      transform:translateZ(20px);
+      z-index:1;
+      pointer-events:none;
+    }
+
+    /* soft particles */
+    .dots{
+      position:absolute; inset:0;
+      background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size:14px 14px;
+      mask-image: radial-gradient(circle at 80% 0%, black 0%, transparent 60%);
+      opacity:.35;
+      transform:translateZ(10px);
+      z-index:1; pointer-events:none;
     }
 
     .price{
@@ -71,13 +137,15 @@
       align-items:flex-end;
       gap:10px;
       font-weight:800;
+      z-index:6;
+      transform:translateZ(70px);
+      text-shadow:0 8px 24px rgba(0,0,0,.35);
     }
     .price .num{
       font-size:86px;
       line-height:.9;
-     
       letter-spacing:-1px;
-      text-shadow:0 4px 16px rgba(0,0,0,.18);
+      text-shadow:0 6px 20px rgba(0,0,0,.35);
     }
     .price .per{
       font-size:28px;
@@ -85,20 +153,65 @@
       font-weight:700;
       opacity:.95;
       margin-bottom:10px;
-      text-shadow:0 2px 10px rgba(0,0,0,.18);
+      text-shadow:0 4px 14px rgba(0,0,0,.32);
     }
 
+    /* reflection under car */
+    .car-reflect{
+      position:absolute;
+      right:52px; bottom:-22px;
+      width:min(48%, 320px);
+      max-width:320px;
+      opacity:.22;
+      filter: blur(8px);
+      transform: translateZ(30px) scaleY(-1) skewX(8deg);
+      transform-origin:bottom center;
+      z-index:2; pointer-events:none;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.9), transparent 70%);
+    }
+
+    /* main car (3D + float) */
     .car{
       position:absolute;
-      right:26px;
-      bottom:28px;
-      width:min(44%, 360px);
-      max-width:360px;
+      right:18px; bottom:-6px;
+      width:min(52%, 420px);
+      max-width:420px;
       height:auto;
-   
-      filter: drop-shadow(0 18px 20px rgba(0,0,0,.22));
-      user-select:none;
-      pointer-events:none;
+      z-index:7;
+
+      transform:
+        translateZ(160px)
+        rotateY(-22deg)
+        rotateX(8deg)
+        scale(1.22);
+
+      filter:
+        drop-shadow(-28px 20px 26px rgba(0,0,0,.7))
+        drop-shadow(-8px 6px 12px rgba(0,0,0,.55))
+        drop-shadow(0 0 26px rgba(255,255,255,.25));
+      transition: transform .22s ease, filter .22s ease;
+      user-select:none; pointer-events:none;
+    }
+
+    .car-float{
+      animation: floatCar 3.2s ease-in-out infinite;
+      transform-style:preserve-3d;
+    }
+    @keyframes floatCar{
+      0%,100%{transform:translateY(0px)}
+      50%{transform:translateY(-8px)}
+    }
+
+    .banner:hover .car{
+      transform:
+        translateZ(220px)
+        rotateY(-28deg)
+        rotateX(4deg)
+        scale(1.28);
+      filter:
+        drop-shadow(-36px 26px 32px rgba(0,0,0,.8))
+        drop-shadow(-10px 8px 14px rgba(0,0,0,.6))
+        drop-shadow(0 0 34px rgba(255,255,255,.3));
     }
 
     /* ======= BLUE SECTION ======= */
@@ -158,37 +271,102 @@
       font-weight:600;
     }
 
-    .div1 {
-  background: white;
-  color: white;
-  text-align: center;
-  padding: 0.4em;
-  font-size: 1.2em;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  width: 100%;
-  border-top: 0.2em solid #1e3a8a;
-}
+    .div1{
+      background:white;
+      color:white;
+      text-align:center;
+      padding:.4em;
+      font-size:1.2em;
+      font-weight:800;
+      letter-spacing:.05em;
+      width:100%;
+      border-top:.2em solid #1e3a8a;
+    }
+    .div1>img{
+      width:20%;
+      object-fit:cover;
+    }
 
-.div1 > img {
-  width: 20%;
-  object-fit: cover;
-}
-    /* ======= MOBILE ======= */
+    /* ======================================================
+       MOBILE OPTIMIZED BANNER (car left, price right)
+       + toned animations so it looks clean on phone
+       ====================================================== */
     @media (max-width: 820px){
-      .headline{font-size:20px}
+      .headline{
+        font-size:20px;
+        line-height:1.25;
+        margin:8px auto 14px;
+      }
 
       .banner{
-        min-height:150px;
-        padding:18px 16px;
+        min-height:165px;
+        padding:14px;
+        border-radius:20px;
+
+        display:grid;
+        grid-template-columns: 1.2fr .9fr;
+        align-items:center;
+        gap:8px;
       }
-      .price .num{font-size:64px}
-      .price .per{font-size:22px; margin-bottom:6px}
+
+      /* calmer aura on mobile */
+      .aura{
+        right:50%;
+        bottom:-90px;
+        width:420px; height:320px;
+        transform:translateX(50%) translateZ(12px);
+        opacity:.75;
+        filter:blur(60px);
+      }
+      .dots{opacity:.25}
+
+      .price{
+        grid-column:2;
+        justify-self:center;
+        align-self:center;
+        flex-direction:column;
+        align-items:center;
+        gap:2px;
+        text-align:center;
+        transform:translateZ(40px);
+      }
+      .price .num{
+        font-size:56px;
+        line-height:1;
+        letter-spacing:-.5px;
+      }
+      .price .per{
+        font-size:20px;
+        margin:0;
+      }
+
       .car{
-        right:10px;
-        bottom:6px;
-        width:44%;
-        max-width:220px;
+        position:relative;
+        grid-column:1;
+        right:auto; bottom:auto;
+        width:100%;
+        max-width:260px;
+        margin-left:-6px;
+        transform:
+          translateZ(80px)
+          rotateY(-8deg)
+          rotateX(3deg)
+          scale(1.15);
+        filter:
+          drop-shadow(-16px 12px 16px rgba(0,0,0,.55))
+          drop-shadow(-4px 4px 8px rgba(0,0,0,.45))
+          drop-shadow(0 0 18px rgba(255,255,255,.18));
+        justify-self:start;
+      }
+
+      .car-reflect{
+        right:auto; bottom:-30px;
+        grid-column:1;
+        width:78%;
+        max-width:240px;
+        margin-left:6px;
+        transform: translateZ(10px) scaleY(-1);
+        opacity:.18;
       }
 
       .save-line{font-size:16px}
@@ -204,7 +382,6 @@
         padding:16px 8px;
         border-radius:10px;
       }
-      /* center last one like screenshot */
       .age-btn.last{
         grid-column: 1 / -1;
         max-width:220px;
@@ -213,9 +390,14 @@
     }
 
     @media (max-width: 420px){
-      .banner{border-radius:16px}
-      .price .num{font-size:56px}
-      .price .per{font-size:20px}
+      .banner{
+        border-radius:18px;
+        padding:12px;
+        grid-template-columns: 1.25fr .8fr;
+      }
+      .car{max-width:240px}
+      .price .num{font-size:50px}
+      .price .per{font-size:18px}
       .age-title{font-size:26px}
     }
   </style>
@@ -223,7 +405,7 @@
 
 <body>
   <main class="page">
-     <div
+    <div
       class="div1"
       onclick="smoothScrollToTop(1000, 432)"
       style="cursor: pointer"
@@ -235,20 +417,28 @@
         style="cursor: pointer; width: auto; height: 28px; padding: 4px"
       />
     </div>
-    <div class="wrap">
 
+    <div class="wrap">
       <h1 class="headline">
         Drivers are Rushing to Remove Fees and Agent Commissions on any Auto Bill using The Fair Insurance Alliance
       </h1>
 
-      <section class="banner" aria-label="Price banner">
+      <section class="banner" aria-label="Price banner" id="banner3d">
+        <!-- animation layers -->
+        <div class="shine"></div>
+        <div class="aura"></div>
+        <div class="dots"></div>
+
         <div class="price">
           <div class="num">39.99</div>
           <div class="per">per month</div>
         </div>
 
-        <!-- car image from your URL -->
-        <img class="car" src="https://m.smartdrivequote.com/jm/v1/car.png" alt="Car" />
+        <!-- reflection -->
+        <img class="car-reflect" src="https://m.smartdrivequote.com/jm/v1/car.png" alt="" />
+
+        <!-- main car -->
+        <img class="car car-float" src="https://m.smartdrivequote.com/jm/v1/car.png" alt="Car" />
       </section>
 
       <section class="blue-section">
@@ -272,8 +462,35 @@
           smartdrivequote.com | 74 E Glenwood Ave Smyrna, DE 19977
         </div>
       </section>
-
     </div>
   </main>
+
+<script>
+  // Dribbble-style parallax tilt on banner (desktop only)
+  const banner = document.getElementById("banner3d");
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+  if (window.innerWidth > 820){
+    banner.addEventListener("mousemove", (e)=>{
+      const r = banner.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const cx = r.width/2;
+      const cy = r.height/2;
+
+      const dx = (x - cx) / cx;
+      const dy = (y - cy) / cy;
+
+      const rotY = clamp(dx * 10, -12, 12);
+      const rotX = clamp(-dy * 8, -10, 10);
+
+      banner.style.transform = `rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+    });
+
+    banner.addEventListener("mouseleave", ()=>{
+      banner.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    });
+  }
+</script>
 </body>
 </html>
