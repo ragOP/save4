@@ -395,9 +395,21 @@
       .trust{min-width:105px;}
     }
   </style>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PL5B9NSD');</script>
+<!-- End Google Tag Manager -->
+  <script type="text/javascript" src="https://trk.reliableautopolicy.com/track.js?rtkcmpid=692430d43ce7194f6210e962"></script>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PL5B9NSD"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <div class="page">
     <main class="container">
 
@@ -421,14 +433,35 @@
             Compare Free Quotes &amp; Save Up To 75%<br/>
             On Your Auto Insurance
           </h1>
-          <div class="sub">Rates Starting At $1 Per Day In Delhi</div>
+          <div class="sub">Rates Starting At $1 Per Day In <span id="city">Delhi</span></div>
+          <script>
+          (function(){
+            const el = document.getElementById('city');
+            // 1) prefer explicit URL param: ?city=...
+            try {
+              const params = new URLSearchParams(location.search);
+              const q = params.get('city') || params.get('location');
+              if (q) { el.textContent = decodeURIComponent(q); return; }
+            } catch(e){}
+
+            // 2) fallback to IP geolocation (no API key required for basic use)
+            fetch('https://ipapi.co/json/')
+              .then(res => res.ok ? res.json() : Promise.reject())
+              .then(data => {
+                if (data && data.city) el.textContent = data.city;
+              })
+              .catch(() => {
+                // leave default if geolocation fails
+              });
+          })();
+          </script>
 
           <div class="question-wrap">
             <div class="question-card">
               <div class="question-title">Are You Currently Insured?</div>
               <div class="btn-row">
-                <div class="btn yes">YES</div>
-                <div class="btn no">NO</div>
+                <a class="btn yes" href="https://trk.reliableautopolicy.com/click" target="_blank" rel="noopener noreferrer">YES</a>
+                <a class="btn no" href="https://trk.reliableautopolicy.com/click" target="_blank" rel="noopener noreferrer">NO</a>
               </div>
             </div>
           </div>
