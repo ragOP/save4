@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Insurance Quiz (Mobile)</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --card:#ffffff;
+      --border:#d7dde3;
+      --text:#0b1220;
+      --muted:#6b7280;
+
+      --green:#1f5a45;          /* calm finance green */
+      --green-2:#184b3a;
+      --green-dot:#1f8a5c;
+
+      --strip:#eef2f6;          /* info bar bg */
+      --strip2:#fff7db;         /* subtle yellow */
+      --blue:#0b63ad;
+
+      --shadow: 0 14px 34px rgba(2,6,23,.08);
+      --shadow-btn: 0 10px 18px rgba(2,6,23,.16);
+      --radius: 22px;
+      --radius-btn: 18px;
+
+      --max: 420px;
+      --pad: 18px;
+      --pad-lg: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px 14px;
+    }
+
+    /* ===== PAGE WRAP ===== */
+    .wrap{
+      width:min(var(--max), 100%);
+      margin:auto;
+    }
+
+    /* ===== CARD ===== */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .inner{
+      padding:18px 18px 16px;
+    }
+
+    /* ===== HEADER ===== */
+    .header{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:8px;
+      padding:18px 18px 14px;
+      text-align:center;
+    }
+
+    .brandRow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      line-height:1;
+    }
+
+    .brand{
+      font-weight:800;
+      letter-spacing:.2px;
+      font-size:20px;
+      color:#111827;
+    }
+
+    .sub{
+      font-size:12.5px;
+      color:var(--muted);
+      margin-top:-2px;
+    }
+
+    .divider{
+      height:1px;
+      background:#e7edf3;
+      margin:0 18px;
+    }
+
+    /* ===== STATUS STRIP ===== */
+    .status{
+      margin:14px 18px 0;
+      border-radius:12px;
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:var(--strip2);
+      border:1px solid #f1e5b5;
+      color:#1f2937;
+    }
+
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background:var(--green-dot);
+      box-shadow: 0 0 0 4px rgba(31,138,92,.12);
+      flex:0 0 auto;
+    }
+
+    .statusText{
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.1px;
+    }
+    .statusText .live{
+      color:#b91c1c;
+      font-weight:900;
+      margin-right:4px;
+    }
+
+    /* ===== HEADLINE ===== */
+    .hero{
+      padding:18px 18px 0;
+      text-align:center;
+    }
+
+    .h1{
+      margin:12px 0 8px;
+      font-size:30px;
+      line-height:1.14;
+      letter-spacing:-.5px;
+      font-weight:900;
+      color:#0b1220;
+    }
+
+    .emphGreen{
+      color:var(--green);
+      font-weight:900;
+      position:relative;
+      display:inline-block;
+    }
+
+    /* shimmer on highlighted parts + "Drivers..." line */
+    .shimmerText{
+      position:relative;
+      display:inline-block;
+      padding:2px 2px;
+      border-radius:10px;
+      isolation:isolate;
+    }
+    .shimmerText::after{
+      content:"";
+      position:absolute;
+      inset:-6px -18px;
+      background:linear-gradient(
+        115deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0) 35%,
+        rgba(255,255,255,.55) 50%,
+        rgba(255,255,255,0) 65%,
+        rgba(255,255,255,0) 100%
+      );
+      transform:translateX(-120%);
+      animation: shimmerSweep 1.65s linear infinite;
+      pointer-events:none;
+      z-index:2;
+      mix-blend-mode:screen;
+    }
+
+    /* zoom-in + fade-out “flash” on headline line */
+    .flashZoom{
+      position:relative;
+      display:inline-block;
+      isolation:isolate;
+    }
+    .flashZoom::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:55%;
+      width:86%;
+      height:80%;
+      transform:translate(-50%,-50%) scale(.92);
+      border-radius:999px;
+      background:radial-gradient(closest-side, rgba(31,90,69,.18), rgba(31,90,69,0));
+      opacity:0;
+      pointer-events:none;
+      z-index:-1;
+      animation: zoomFade 2.2s ease-in-out infinite;
+    }
+
+    .support{
+      margin:0 0 14px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    .line{
+      height:1px;
+      background:#e7edf3;
+      margin:12px 18px 0;
+    }
+
+    /* ===== QUESTION ===== */
+    .q{
+      text-align:center;
+      padding:16px 18px 0;
+      font-weight:900;
+      font-size:20px;
+      letter-spacing:-.2px;
+      color:#0b1220;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btnWrap{
+      padding:14px 18px 0;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .btn{
+      width:100%;
+      border:none;
+      border-radius:var(--radius-btn);
+      padding:16px 14px;
+      font-weight:900;
+      font-size:18px;
+      letter-spacing:.5px;
+      color:#fff;
+      background:var(--green);
+      box-shadow: var(--shadow-btn);
+      cursor:pointer;
+      position:relative;
+      overflow:hidden;
+      transform:translateZ(0);
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+    .btn:active{
+      transform:translateY(1px) scale(.99);
+      box-shadow: 0 7px 14px rgba(2,6,23,.16);
+    }
+    .btn.secondary{
+      background:var(--green-2);
+    }
+
+    /* HEAVY shimmer on options */
+    .btn::after{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-120%;
+      width:70%;
+      height:180%;
+      background:linear-gradient(
+        115deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0) 35%,
+        rgba(255,255,255,.55) 50%,
+        rgba(255,255,255,0) 65%,
+        rgba(255,255,255,0) 100%
+      );
+      transform:skewX(-18deg);
+      animation: btnShimmer 1.25s linear infinite;
+      pointer-events:none;
+      opacity:.95;
+      mix-blend-mode:screen;
+    }
+
+    /* zoom-in fade-out “spot flash” on buttons */
+    .btn::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      transform:translate(-50%,-50%) scale(.6);
+      background:radial-gradient(closest-side, rgba(255,255,255,.55), rgba(255,255,255,0));
+      opacity:0;
+      pointer-events:none;
+      animation: btnZoomFade 1.6s ease-in-out infinite;
+      filter: blur(.2px);
+    }
+
+    .trustRow{
+      padding:12px 18px 0;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:12.5px;
+    }
+    .trustRow span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .bullet{
+      width:5px;height:5px;border-radius:999px;background:#cbd5e1;
+    }
+
+    /* ===== TESTIMONIAL ===== */
+    .testi{
+      margin:14px 18px 0;
+      border:1px solid #e6ecf2;
+      border-radius:16px;
+      padding:12px 12px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      background:#fff;
+    }
+    .avatar{
+      width:44px;height:44px;border-radius:999px;
+      background:#eef2f6;
+      border:1px solid #dde5ee;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#94a3b8;
+      font-weight:800;
+      flex:0 0 auto;
+    }
+    .tText{
+      font-size:13.5px;
+      color:#111827;
+      line-height:1.35;
+      margin-top:2px;
+    }
+    .tMeta{
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    /* ===== FOOTER ===== */
+    .foot{
+      padding:14px 18px 18px;
+      text-align:center;
+      font-size:11.5px;
+      color:#9aa4b2;
+      line-height:1.35;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes shimmerSweep{
+      0%{ transform:translateX(-120%) }
+      100%{ transform:translateX(120%) }
+    }
+
+    @keyframes btnShimmer{
+      0%{ left:-120% }
+      100%{ left:140% }
+    }
+
+    /* zoom in + fade out */
+    @keyframes zoomFade{
+      0%{ opacity:0; transform:translate(-50%,-50%) scale(.92) }
+      30%{ opacity:1; transform:translate(-50%,-50%) scale(1.03) }
+      60%{ opacity:.0; transform:translate(-50%,-50%) scale(1.10) }
+      100%{ opacity:0; transform:translate(-50%,-50%) scale(1.10) }
+    }
+
+    @keyframes btnZoomFade{
+      0%{ opacity:0; transform:translate(-50%,-50%) scale(.35) }
+      20%{ opacity:.75; transform:translate(-50%,-50%) scale(1.35) }
+      50%{ opacity:0; transform:translate(-50%,-50%) scale(2.35) }
+      100%{ opacity:0; transform:translate(-50%,-50%) scale(2.35) }
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .shimmerText::after,
+      .flashZoom::before,
+      .btn::after,
+      .btn::before{
+        animation:none !important;
+      }
+      .btn:active{ transform:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap" aria-label="Auto insurance savings quiz">
+    <section class="card" role="region" aria-label="Quiz card">
+      <!-- HEADER -->
+      <header class="header">
+        <div class="brandRow">
+          <!-- simple inline USA flag icon (generic) -->
+          <svg width="28" height="18" viewBox="0 0 28 18" aria-hidden="true">
+            <rect x="0" y="0" width="28" height="18" rx="2" fill="#fff" stroke="#D1D5DB"/>
+            <rect x="0.5" y="0.5" width="27" height="17" rx="2" fill="#fff"/>
+            <!-- red stripes -->
+            <rect x="1" y="2" width="26" height="1.6" fill="#B91C1C"/>
+            <rect x="1" y="5" width="26" height="1.6" fill="#B91C1C"/>
+            <rect x="1" y="8" width="26" height="1.6" fill="#B91C1C"/>
+            <rect x="1" y="11" width="26" height="1.6" fill="#B91C1C"/>
+            <rect x="1" y="14" width="26" height="1.6" fill="#B91C1C"/>
+            <!-- blue canton -->
+            <rect x="1" y="1.2" width="11" height="7.2" fill="#1D4ED8"/>
+            <!-- “stars” dots -->
+            <g fill="#fff" opacity="0.95">
+              <circle cx="3" cy="2.6" r="0.35"/><circle cx="5" cy="2.6" r="0.35"/><circle cx="7" cy="2.6" r="0.35"/><circle cx="9" cy="2.6" r="0.35"/>
+              <circle cx="4" cy="4.2" r="0.35"/><circle cx="6" cy="4.2" r="0.35"/><circle cx="8" cy="4.2" r="0.35"/><circle cx="10" cy="4.2" r="0.35"/>
+              <circle cx="3" cy="5.8" r="0.35"/><circle cx="5" cy="5.8" r="0.35"/><circle cx="7" cy="5.8" r="0.35"/><circle cx="9" cy="5.8" r="0.35"/>
+              <circle cx="4" cy="7.4" r="0.35"/><circle cx="6" cy="7.4" r="0.35"/><circle cx="8" cy="7.4" r="0.35"/><circle cx="10" cy="7.4" r="0.35"/>
+            </g>
+          </svg>
+
+          <div class="brand">Quote Savings</div>
+        </div>
+        <div class="sub">Serving American drivers since 2002</div>
+      </header>
+
+      <div class="divider"></div>
+
+      <!-- STATUS STRIP -->
+      <div class="status" role="status" aria-live="polite">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="statusText">
+          <span class="live">LIVE:</span> Limited-time savings program
+        </div>
+      </div>
+
+      <!-- HEADLINE -->
+      <div class="hero">
+        <div class="h1">
+          <span class="flashZoom shimmerText">Drivers may qualify to get</span>
+          <br />
+          <span class="emphGreen shimmerText">$1497</span>
+          <span> back in </span>
+          <span class="emphGreen shimmerText">30 seconds</span>
+        </div>
+        <div class="support">Rates vary by location, driving history, and current policy.</div>
+      </div>
+
+      <div class="line"></div>
+
+      <!-- QUESTION -->
+      <div class="q">Are you currently insured?</div>
+
+      <!-- BUTTONS -->
+      <div class="btnWrap">
+        <button class="btn" id="yesBtn" type="button">YES</button>
+        <button class="btn secondary" id="noBtn" type="button">NO</button>
+      </div>
+
+      <!-- TRUST ROW -->
+      <div class="trustRow" aria-label="Trust notes">
+        <span><i class="bullet" aria-hidden="true"></i> Free check</span>
+        <span><i class="bullet" aria-hidden="true"></i> No paperwork</span>
+        <span><i class="bullet" aria-hidden="true"></i> Takes under 1 minute</span>
+      </div>
+
+      <!-- TESTIMONIAL -->
+      <div class="testi" aria-label="Testimonial">
+        <div class="avatar" aria-hidden="true">👤</div>
+        <div>
+          <div class="tText">
+            “Hard to believe, but they lowered my premium by $78 a month and it took no time at all.”
+          </div>
+          <div class="tMeta">— Tom G., FL</div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="foot">
+        *Savings not guaranteed. Individual results vary based on insurer, location, and driving profile.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Demo click behavior (replace with your redirect / quiz routing)
+    const REDIRECT_URL_YES = "https://example.com/yes";
+    const REDIRECT_URL_NO  = "https://example.com/no";
+
+    function go(url){
+      // window.location.href = url; // uncomment for real use
+      console.log("Redirect to:", url);
+    }
+
+    document.getElementById("yesBtn").addEventListener("click", () => go(REDIRECT_URL_YES));
+    document.getElementById("noBtn").addEventListener("click",  () => go(REDIRECT_URL_NO));
+
+    // Optional: keep animations “fresh” by restarting zoom-fade on interaction
+    function restartAnimation(el, className){
+      el.classList.remove(className);
+      void el.offsetWidth; // reflow
+      el.classList.add(className);
+    }
+
+    // Add a quick zoom-fade burst on tap (matches your “zoom in fade out” request)
+    const headline = document.querySelector(".flashZoom");
+    document.getElementById("yesBtn").addEventListener("pointerdown", () => restartAnimation(headline, "flashZoom"));
+    document.getElementById("noBtn").addEventListener("pointerdown",  () => restartAnimation(headline, "flashZoom"));
+  </script>
+</body>
+</html>
