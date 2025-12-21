@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AutoQuote Pilot - Premium Green</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Clarity (KEEP) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ugaqmwe991");
+  </script>
+
+  <style>
+    :root{
+      /* ===== Theme inspired by your screenshot (deep green + lime accent) ===== */
+      --bg0:#06140f;
+      --bg1:#071a13;
+      --bg2:#0a241a;
+      --panel:#0c2b1f;
+      --panel2:#0e3325;
+
+      --text:#eaf7ef;
+      --muted:rgba(234,247,239,.76);
+      --muted2:rgba(234,247,239,.60);
+
+      --lime:#a3ff3a;
+      --lime2:#7bff20;
+
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.14);
+
+      --shadow: 0 16px 44px rgba(0,0,0,.55);
+      --shadow2: 0 12px 26px rgba(0,0,0,.45);
+      --radius: 22px;
+
+      --inner: 980px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 18% 5%, rgba(163,255,58,.12), transparent 60%),
+        radial-gradient(900px 600px at 90% 12%, rgba(163,255,58,.08), transparent 62%),
+        radial-gradient(1000px 700px at 60% 110%, rgba(163,255,58,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
+    }
+
+    .page,.container{width:100%;}
+    .inner{max-width:var(--inner); margin:0 auto; padding:0 14px;}
+
+    /* =================== TOP SOCIAL BAR =================== */
+    .topbar{
+      position:sticky; top:0; z-index:60;
+      background: linear-gradient(180deg, rgba(6,20,15,.92), rgba(6,20,15,.76));
+      border-bottom:1px solid var(--line);
+      backdrop-filter: blur(10px);
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-align:center;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+    .topbar .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line2);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 12px 24px rgba(0,0,0,.18);
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:12px;
+      color:rgba(234,247,239,.92);
+    }
+    .topbar .dot{
+      width:8px;height:8px;border-radius:999px;
+      background: var(--lime);
+      box-shadow: 0 0 22px rgba(163,255,58,.35);
+      flex:0 0 auto;
+    }
+    .topbar .faces{
+      height:20px;
+      width:auto;
+      border-radius:999px;
+      object-fit:cover;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+    }
+
+    /* =================== HERO =================== */
+    .hero{
+      position:relative;
+      padding: 18px 12px 22px;
+      overflow:hidden;
+    }
+
+    /* Background art layer (uses your current banner image but styled premium) */
+    .heroBg{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1000px 520px at 22% 0%, rgba(163,255,58,.14), transparent 62%),
+        radial-gradient(900px 520px at 86% 10%, rgba(163,255,58,.10), transparent 66%),
+        linear-gradient(180deg, rgba(7,26,19,.92), rgba(6,20,15,.92)),
+        url("https://s.autoquotepilot.com/V4-rfv-opf-5/images/banner-img.jpg") center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.02);
+      transform: scale(1.02);
+    }
+    .heroShade{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.48), rgba(0,0,0,.62)),
+        radial-gradient(700px 320px at 50% 30%, rgba(0,0,0,.15), rgba(0,0,0,.65));
+    }
+
+    .heroInner{
+      position:relative;
+      max-width: 980px;
+      margin:0 auto;
+      z-index:2;
+    }
+
+    /* Top hero row (headline + micro trust) */
+    .heroHeader{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+      text-align:center;
+      padding: 10px 8px 14px;
+    }
+
+    .heroKicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line2);
+      background: rgba(255,255,255,.05);
+      font-weight:900;
+      font-size:12px;
+      color:rgba(234,247,239,.90);
+    }
+    .heroKicker .kdot{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--lime);
+      box-shadow: 0 0 24px rgba(163,255,58,.35);
+    }
+
+    h1{
+      margin:0;
+      font-size: 30px;
+      line-height:1.10;
+      letter-spacing: -.4px;
+      font-weight: 950;
+      text-shadow: 0 10px 28px rgba(0,0,0,.35);
+      max-width: 18ch;
+    }
+    .accent{
+      color: var(--lime);
+      text-shadow: 0 0 22px rgba(163,255,58,.18);
+    }
+
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height:1.5;
+      font-weight:650;
+      max-width: 56ch;
+    }
+
+    .statRow{
+      width:100%;
+      max-width: 720px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .stat{
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 14px 28px rgba(0,0,0,.18);
+      padding: 12px 12px;
+      text-align:left;
+    }
+    .stat b{
+      display:block;
+      font-size: 16px;
+      font-weight:950;
+      letter-spacing:-.2px;
+      color: rgba(234,247,239,.96);
+    }
+    .stat span{
+      display:block;
+      margin-top:4px;
+      font-size: 12.5px;
+      color: rgba(234,247,239,.70);
+    }
+
+    /* =================== QUESTION CARD (premium) =================== */
+    .qWrap{
+      margin-top: 10px;
+      display:flex;
+      justify-content:center;
+    }
+    .qCard{
+      width:100%;
+      max-width: 520px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(180deg, rgba(14,51,37,.82), rgba(10,36,26,.82));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .qCard::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(360px 160px at 20% 0%, rgba(163,255,58,.16), transparent 65%),
+        radial-gradient(340px 160px at 90% 10%, rgba(163,255,58,.10), transparent 65%);
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .qHead{
+      position:relative;
+      padding: 16px 14px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .qTitle{
+      margin:0;
+      font-weight: 950;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .qHint{
+      margin-top:6px;
+      font-size: 12.5px;
+      color: rgba(234,247,239,.72);
+      line-height: 1.35;
+    }
+
+    /* Big tappable choices (conversion friendly) */
+    .choiceGrid{
+      position:relative;
+      padding: 14px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .choice{
+      text-decoration:none;
+      color: inherit;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 14px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 12px 22px rgba(0,0,0,.22);
+      transform: translateZ(0);
+      transition: transform .12s ease, filter .12s ease, border-color .12s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .choice:active{ transform: translateY(1px); }
+    .choice:hover{ filter: brightness(1.03); border-color: rgba(163,255,58,.30); }
+
+    .choiceLeft{
+      display:flex; align-items:center; gap:12px;
+      min-width:0;
+    }
+    .cIcon{
+      width:44px; height:44px;
+      border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+      flex:0 0 auto;
+      font-size: 18px;
+    }
+    .cText{min-width:0;}
+    .cText .big{
+      font-weight: 950;
+      font-size: 18px;
+      letter-spacing:-.2px;
+      margin:0;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .cText .small{
+      margin-top:4px;
+      font-size: 12.5px;
+      color: rgba(234,247,239,.72);
+      line-height:1.3;
+      max-width: 34ch;
+    }
+
+    .cRight{
+      display:flex; align-items:center; gap:10px;
+      flex:0 0 auto;
+    }
+    .badge{
+      font-size: 11px;
+      font-weight: 950;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: rgba(234,247,239,.90);
+      white-space:nowrap;
+    }
+    .arrow{
+      width:38px;height:38px;border-radius: 999px;
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* Highlight YES slightly (subtle, not glassy) */
+    .choice.yes{
+      border-color: rgba(163,255,58,.26);
+      background: linear-gradient(180deg, rgba(163,255,58,.12), rgba(255,255,255,.06));
+    }
+    .choice.yes .cIcon{
+      background: rgba(163,255,58,.14);
+      border-color: rgba(163,255,58,.30);
+    }
+
+    .secure{
+      position:relative;
+      padding: 12px 14px 14px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      color: rgba(234,247,239,.70);
+      font-size: 12px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .lock{
+      width:14px;height:14px;border-radius:4px;
+      border:1px solid rgba(255,255,255,.22);
+      position:relative;
+      background: rgba(255,255,255,.06);
+      flex:0 0 auto;
+    }
+    .lock:before{
+      content:"";
+      position:absolute;
+      left:3px; right:3px; top:-6px; height:7px;
+      border:2px solid rgba(255,255,255,.30);
+      border-bottom:none;
+      border-radius: 8px 8px 0 0;
+    }
+
+    /* =================== TRUST STRIP =================== */
+    .trustWrap{
+      padding: 12px 0 8px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(6,20,15,.40), rgba(6,20,15,.10));
+    }
+    .trustRow{
+      display:flex;
+      gap:12px;
+      overflow-x:auto;
+      scrollbar-width:none;
+      padding: 0 14px 6px;
+    }
+    .trustRow::-webkit-scrollbar{display:none;}
+    .trustItem{
+      min-width: 210px;
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 12px 24px rgba(0,0,0,.18);
+      padding: 12px 12px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .trustItem .tIcon{
+      width:40px;height:40px;border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      display:flex; align-items:center; justify-content:center;
+      color: var(--lime);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+      flex:0 0 auto;
+      font-size: 16px;
+    }
+    .trustItem b{display:block; font-size: 13px; font-weight: 950;}
+    .trustItem span{display:block; font-size: 12px; color: rgba(234,247,239,.72); margin-top:2px;}
+
+    /* =================== SECTIONS =================== */
+    .section{padding: 18px 0; }
+    .section h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: -.2px;
+      color: rgba(234,247,239,.95);
+    }
+
+    /* Quotes (kept but styled premium) */
+    .quotesCard{
+      border:1px solid var(--line);
+      border-radius: 20px;
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--shadow2);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .quotesHead{
+      background: rgba(0,0,0,.22);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      padding: 12px 12px;
+      font-weight: 950;
+      font-size: 12px;
+      display:grid;
+      grid-template-columns: 1.2fr 1fr .8fr .8fr;
+      gap: 8px;
+      color: rgba(234,247,239,.90);
+    }
+    .quotesViewport{
+      position:relative;
+      height: 260px;
+      overflow:hidden;
+      background: rgba(0,0,0,.10);
+    }
+    .quotesBody{
+      display:block;
+      will-change: transform;
+      animation: quotesScroll linear infinite;
+      animation-duration: var(--scroll-time, 60s);
+    }
+    @keyframes quotesScroll{
+      from{ transform: translateY(0); }
+      to{ transform: translateY(-50%); }
+    }
+    .quotesRow{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr .8fr .8fr;
+      gap: 8px;
+      padding: 12px 12px;
+      font-size: 13px;
+      align-items:center;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: rgba(234,247,239,.86);
+    }
+    .quotesRow:nth-child(even){
+      background: rgba(255,255,255,.03);
+    }
+    .blur{
+      height: 12px; width: 70%;
+      background: linear-gradient(90deg, rgba(234,247,239,.25), rgba(234,247,239,.08));
+      border-radius: 999px;
+    }
+    .rate{font-weight: 950; text-align:right; color: rgba(234,247,239,.94);}
+    .quotesViewport:hover .quotesBody{ animation-play-state: paused; }
+
+    /* Reviews (kept but premium) */
+    .reviews{
+      padding: 16px 0 6px;
+    }
+    .lead{
+      margin: 0 0 10px;
+      color: rgba(234,247,239,.72);
+      font-size: 13px;
+      line-height: 1.5;
+      text-align:center;
+    }
+    .rGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .rCard{
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      padding: 14px 14px;
+      overflow:hidden;
+      position:relative;
+    }
+    .rCard::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background: radial-gradient(260px 120px at 20% 0%, rgba(163,255,58,.10), transparent 60%);
+      opacity:.75;
+      pointer-events:none;
+    }
+    .rStars{display:flex; gap:4px; margin-bottom: 8px; position:relative;}
+    .rStar{
+      width: 14px; height: 14px;
+      background: var(--lime);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 67% 57%, 79% 91%, 50% 70%, 21% 91%, 33% 57%, 2% 35%, 39% 35%);
+      filter: drop-shadow(0 0 10px rgba(163,255,58,.12));
+      opacity:.95;
+    }
+    .rQuote{
+      position:relative;
+      margin:0;
+      color: rgba(234,247,239,.90);
+      font-size: 13.5px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+    .rUser{
+      position:relative;
+      display:flex; align-items:center; gap:10px;
+      margin-top: 12px;
+    }
+    .rAvatar{
+      width: 44px; height: 44px; border-radius: 999px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      flex:0 0 auto;
+    }
+    .rAvatar img{width:100%; height:100%; object-fit: cover;}
+    .rName{font-weight: 950; font-size: 13px;}
+    .rVerified{
+      margin-top:2px;
+      font-size: 11px;
+      color: rgba(234,247,239,.70);
+      display:flex; align-items:center; gap:6px;
+    }
+    .check{
+      width: 16px; height:16px; border-radius:999px;
+      background: rgba(163,255,58,.18);
+      border: 1px solid rgba(163,255,58,.30);
+      color: var(--lime);
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    /* =================== FOOTER =================== */
+    footer{
+      padding: 18px 0 28px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      color: rgba(234,247,239,.60);
+      font-size: 11px;
+      line-height: 1.5;
+      text-align:center;
+      background: linear-gradient(180deg, rgba(6,20,15,.25), rgba(6,20,15,.10));
+    }
+    footer a{color: rgba(234,247,239,.86); text-decoration:none; font-weight: 800;}
+    footer .links{
+      margin-top: 10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      justify-content:center;
+      font-weight: 800;
+      color: rgba(234,247,239,.70);
+    }
+
+    /* =================== Sticky Answer Bar (boosts clicks) =================== */
+    .stickyBar{
+      position: fixed;
+      left: 0; right: 0;
+      bottom: 0;
+      z-index: 80;
+      padding: 10px 12px calc(10px + var(--safe-bottom));
+      background: linear-gradient(180deg, rgba(6,20,15,.10), rgba(6,20,15,.88));
+      border-top: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+    }
+    .stickyInner{
+      max-width: 980px;
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .stickyText{
+      display:flex; flex-direction:column; gap:2px;
+      min-width:0;
+    }
+    .stickyText b{
+      font-size: 12.5px;
+      font-weight: 950;
+      color: rgba(234,247,239,.92);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .stickyText span{
+      font-size: 11.5px;
+      color: rgba(234,247,239,.65);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .stickyBtns{
+      display:flex; gap:10px; flex:0 0 auto;
+    }
+    .sBtn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(234,247,239,.92);
+      font-weight: 950;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.20);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .12s ease, filter .12s ease, border-color .12s ease;
+    }
+    .sBtn:active{ transform: translateY(1px); }
+    .sBtn.yes{
+      color:#06140f;
+      background: linear-gradient(180deg, rgba(163,255,58,.98), rgba(123,255,32,.92));
+      border-color: rgba(163,255,58,.30);
+      box-shadow: 0 14px 30px rgba(0,0,0,.28);
+    }
+
+    /* Give bottom space so sticky bar doesn't cover content */
+    .padBottom{ padding-bottom: 94px; }
+
+    /* Desktop tweaks */
+    @media (min-width: 900px){
+      h1{ font-size: 46px; max-width: none; }
+      .heroHeader{ align-items:flex-start; text-align:left; padding: 16px 8px 12px; }
+      .statRow{ grid-template-columns: 1fr 1fr; }
+      .qWrap{ justify-content:flex-start; }
+      .qCard{ max-width: 620px; }
+      .choiceGrid{ grid-template-columns: 1fr 1fr; }
+      .choice .cText .small{ max-width: 26ch; }
+      .rGrid{ grid-template-columns: 1fr 1fr 1fr; }
+      .quotesViewport{ height: 300px; }
+      .stickyText b{ font-size: 13.5px; }
+    }
+  </style>
+
+  <script>
+    async function setStateName() {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        let state = data.region || "Your State";
+
+        const subEl = document.querySelector("#dynSub");
+        if (subEl) {
+          subEl.innerHTML = `Rates starting at <b class="accent">$19.99/mo</b> in <b>${state}</b>`;
+        }
+
+        const stickySub = document.querySelector("#stickySub");
+        if (stickySub) stickySub.textContent = `Rates can start at $19.99/mo in ${state}`;
+      } catch (e) {
+        const subEl = document.querySelector("#dynSub");
+        if (subEl) {
+          subEl.innerHTML = `Rates starting at <b class="accent">$19.99/mo</b> in <b>Your State</b>`;
+        }
+      }
+    }
+    setStateName();
+  </script>
+
+  <!-- TikTok Pixel Code Start (KEEP) -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+  var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+  ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    ttq.load('D2H5NABC77UCCBANISK0');
+    ttq.page();
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+
+  <!-- Google Tag Manager (KEEP) -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PL5B9NSD');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Track.js (KEEP) -->
+  <script type="text/javascript" src="https://trk.reliableautopolicy.com/track.js?rtkcmpid=6946788c9056478fc50bd7b5"></script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) (KEEP) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PL5B9NSD"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="page padBottom">
+    <main class="container">
+
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <span class="pill">
+          <span class="dot"></span>
+          <span>60,754 Americans Saved On Auto Insurance</span>
+          <img class="faces" src="https://autoquotepilot.com/aksh/v1/review-faces.png" alt="recent users"/>
+        </span>
+      </div>
+
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="heroBg" aria-hidden="true"></div>
+        <div class="heroShade" aria-hidden="true"></div>
+
+        <div class="heroInner">
+
+          <div class="heroHeader">
+            <div class="heroKicker">
+              <span class="kdot"></span>
+              Compare nearby providers in seconds
+            </div>
+
+            <h1>
+              Get back <span class="accent">$710</span> in savings
+              <br/>on your auto insurance
+            </h1>
+
+            <p class="sub" id="dynSub">
+              Rates starting at <b class="accent">$19.99/mo</b> in <b>America</b>
+            </p>
+
+            <div class="statRow">
+              <div class="stat">
+                <b>Fast matching</b>
+                <span>Tap once • see offers quickly</span>
+              </div>
+              <div class="stat">
+                <b>Secure & private</b>
+                <span>Your info stays confidential</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question Card -->
+          <div class="qWrap">
+            <div class="qCard" id="questionCard">
+              <div class="qHead">
+                <p class="qTitle">Are you currently insured?</p>
+                <div class="qHint">Choose one option to continue (takes ~30 seconds)</div>
+              </div>
+
+              <div class="choiceGrid">
+                <a class="choice yes" href="https://trk.reliableautopolicy.com/click" role="button" aria-label="Yes, I am insured">
+                  <div class="choiceLeft">
+                    <div class="cIcon"><i class="fa-solid fa-shield"></i></div>
+                    <div class="cText">
+                      <div class="big">YES</div>
+                      <div class="small">I currently have insurance</div>
+                    </div>
+                  </div>
+                  <div class="cRight">
+                    <div class="badge">Most common</div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                  </div>
+                </a>
+
+                <a class="choice no" href="https://trk.reliableautopolicy.com/click" role="button" aria-label="No, I am not insured">
+                  <div class="choiceLeft">
+                    <div class="cIcon"><i class="fa-solid fa-car-burst"></i></div>
+                    <div class="cText">
+                      <div class="big">NO</div>
+                      <div class="small">I don’t have insurance right now</div>
+                    </div>
+                  </div>
+                  <div class="cRight">
+                    <div class="badge">Quick match</div>
+                    <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="secure">
+                <span class="lock"></span>
+                <span>We keep all your information 100% secure &amp; confidential, always.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TRUST STRIP -->
+      <section class="trustWrap">
+        <div class="inner">
+          <div class="trustRow">
+            <div class="trustItem">
+              <div class="tIcon"><i class="fa-solid fa-star"></i></div>
+              <div>
+                <b>Rated by drivers</b>
+                <span>Thousands of reviews</span>
+              </div>
+            </div>
+
+            <div class="trustItem">
+              <div class="tIcon"><i class="fa-solid fa-bolt"></i></div>
+              <div>
+                <b>Instant comparison</b>
+                <span>See options fast</span>
+              </div>
+            </div>
+
+            <div class="trustItem">
+              <div class="tIcon"><i class="fa-solid fa-lock"></i></div>
+              <div>
+                <b>Secure matching</b>
+                <span>Privacy-first flow</span>
+              </div>
+            </div>
+
+            <div class="trustItem">
+              <div class="tIcon"><i class="fa-solid fa-piggy-bank"></i></div>
+              <div>
+                <b>Save money</b>
+                <span>Find better rates</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REAL-TIME QUOTES -->
+      <section class="section">
+        <div class="inner">
+          <h2>Real-Time Quotes</h2>
+
+          <div class="quotesCard">
+            <div class="quotesHead">
+              <div>Name</div><div>Model</div><div>State</div><div style="text-align:right;">Rate</div>
+            </div>
+
+            <div class="quotesViewport" id="quotesViewport">
+              <div class="quotesBody" id="quotesBody">
+                <div class="quotesRow">
+                  <div><div class="blur"></div></div>
+                  <div>Chrysler</div>
+                  <div>MT</div>
+                  <div class="rate">$32/mo</div>
+                </div>
+                <div class="quotesRow">
+                  <div><div class="blur" style="width:55%"></div></div>
+                  <div>Ford</div>
+                  <div>NC</div>
+                  <div class="rate">$29/mo</div>
+                </div>
+                <div class="quotesRow">
+                  <div><div class="blur" style="width:60%"></div></div>
+                  <div>Dodge</div>
+                  <div>MO</div>
+                  <div class="rate">$30/mo</div>
+                </div>
+                <div class="quotesRow">
+                  <div><div class="blur" style="width:50%"></div></div>
+                  <div>Fiat</div>
+                  <div>WI</div>
+                  <div class="rate">$33/mo</div>
+                </div>
+                <div class="quotesRow">
+                  <div><div class="blur" style="width:65%"></div></div>
+                  <div>Ford</div>
+                  <div>TX</div>
+                  <div class="rate">$30/mo</div>
+                </div>
+                <div class="quotesRow">
+                  <div><div class="blur" style="width:58%"></div></div>
+                  <div>Genesis</div>
+                  <div>NY</div>
+                  <div class="rate">$25/mo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CUSTOMER REVIEWS -->
+      <section class="reviews">
+        <div class="inner">
+          <h2 style="text-align:center;margin:0 0 8px;">Customer Reviews</h2>
+          <p class="lead">Real feedback from real drivers. Learn how we’ve helped customers save on auto insurance.</p>
+
+          <div class="rGrid">
+            <div class="rCard">
+              <div class="rStars">
+                <span class="rStar"></span><span class="rStar"></span><span class="rStar"></span><span class="rStar"></span><span class="rStar"></span>
+              </div>
+              <p class="rQuote">"Excellent coverage for less money. This is the smartest way to insure your car!"</p>
+              <div class="rUser">
+                <div class="rAvatar">
+                  <img src="https://quotediscountusa.com/images/download%20(4).jpeg" alt="Grace K"/>
+                </div>
+                <div>
+                  <div class="rName">Grace K</div>
+                  <div class="rVerified"><span class="check">✓</span> Verified Buyer</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rCard">
+              <div class="rStars">
+                <span class="rStar"></span><span class="rStar"></span><span class="rStar"></span><span class="rStar"></span><span class="rStar"></span>
+              </div>
+              <p class="rQuote">"The signup process was a breeze, and the savings are real. I'm recommending this to everyone!"</p>
+              <div class="rUser">
+                <div class="rAvatar">
+                  <img src="https://quotediscountusa.com/images/download%20(2).jpeg" alt="Emily B."/>
+                </div>
+                <div>
+                  <div class="rName">Emily B.</div>
+                  <div class="rVerified"><span class="check">✓</span> Verified Buyer</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rCard">
+              <div class="rStars">
+                <span class="rStar"></span><span class="rStar"></span><span class="rStar"></span><span class="rStar"></span><span class="rStar"></span>
+              </div>
+              <p class="rQuote">"Switching to this insurance saved me money without compromising on service. Highly recommend!"</p>
+              <div class="rUser">
+                <div class="rAvatar">
+                  <img src="https://quotediscountusa.com/images/aca_hero_4.png" alt="Amy I."/>
+                </div>
+                <div>
+                  <div class="rName">Amy I.</div>
+                  <div class="rVerified"><span class="check">✓</span> Verified Buyer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="inner">
+          <p>
+            Disclaimer: savemaxauto is a top savings referral service which enables consumers to quickly and easily request multiple competitive insurance company quotes from optimally selected local insurance agents and companies using our proprietary consumer alignment technology. We do not provide insurance and we do not represent any specific insurance provider. Please note that lowest listed rates and potential savings may not be representative or available from all companies. autoquotepilot.com matches users to advertisers and insurance agents only after we’ve received certain information from you, and your actual rates and savings will vary based on your location, coverage limits, deductibles, driving records, type of vehicle, affiliations, and many other variables.
+          </p>
+
+          <div class="links">
+            <a href="#">Privacy Policy</a>
+            <span>|</span>
+            <a href="#">Terms Of Use</a>
+            <span>|</span>
+            <a href="mailto:contact@savemaxauto.org">contact@savemaxauto.org</a>
+            <span>|</span>
+            <a href="#">savemaxauto.org</a>
+            <span>|</span>
+            <span>74 E Glenwood Ave Smyrna, DE 19977</span>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Sticky Answer Bar (boost clicks + no scrolling needed) -->
+  <div class="stickyBar" role="region" aria-label="Quick answer bar">
+    <div class="stickyInner">
+      <div class="stickyText">
+        <b>Are you currently insured?</b>
+        <span id="stickySub">Rates can start at $19.99/mo near you</span>
+      </div>
+      <div class="stickyBtns">
+        <a class="sBtn yes" href="https://trk.reliableautopolicy.com/click" role="button">
+          <i class="fa-solid fa-check"></i> YES
+        </a>
+        <a class="sBtn" href="https://trk.reliableautopolicy.com/click" role="button">
+          <i class="fa-solid fa-xmark"></i> NO
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLOW vertical scroll JS (kept) -->
+  <script>
+    (function(){
+      const body = document.getElementById("quotesBody");
+      if(!body) return;
+
+      const rows = Array.from(body.children);
+      rows.forEach(r => body.appendChild(r.cloneNode(true)));
+
+      // Slow scroll
+      const perRowSeconds = 2;
+      const minSeconds = 40;
+      const time = Math.max(minSeconds, rows.length * perRowSeconds);
+      body.style.setProperty("--scroll-time", time + "s");
+    })();
+  </script>
+
+  <!-- Optional: small attention pulse once page loads (safe, subtle) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      const card = document.getElementById("questionCard");
+      if(!card) return;
+
+      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) return;
+
+      setTimeout(() => {
+        card.animate?.(
+          [
+            { transform: "translateY(0)", filter:"brightness(1)" },
+            { transform: "translateY(-2px)", filter:"brightness(1.03)" },
+            { transform: "translateY(0)", filter:"brightness(1)" }
+          ],
+          { duration: 520, easing: "ease-out" }
+        );
+      }, 450);
+    });
+  </script>
+</body>
+</html>
