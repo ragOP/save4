@@ -1,668 +1,615 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>savemaxauto</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous"
-  >
-
-  <style>
-    /* =========================
-      WT X PREFIXED CSS (wtx-)
-      ========================= */
-
-    .wtx-Title,
-    .wtx-loadWaper,
-    .wtx-lockAndP,
-    .wtx-subTitel,
-    .wtx-tagline,
-    table {
-      text-align: center;
-    }
-
-    .wtx-alart,
-    .wtx-navBarWaper {
-      display: flex;
-      align-items: center;
-    }
-
-    .wtx-heroBG,
-    .wtx-overlay {
-      position: absolute;
-    }
-
-    .wtx-congrasButton,
-    .wtx-navCall {
-      animation: 1s infinite wtx-x-shaking;
-    }
-
-    #wtx-alart,
-    #wtx-heroStep2,
-    #wtx-loadImage2,
-    #wtx-loadImage3,
-    #wtx-realTime,
-    #wtx-step2,
-    #wtx-step3 {
-      display: none;
-    }
-
-    body {
-      font-family: Oswald;
-    }
-
-    @font-face {
-      font-family: pFont;
-      src: url(../font/SourceSansPro-Semibold.otf);
-    }
-
-    @font-face {
-      font-family: pFontRegular;
-      src: url(../font/SourceSansPro-Regular.otf);
-    }
-
-    .wtx-alart {
-      background: #ffede0;
-      color: #011733;
-      width: 100%;
-      height: 50px;
-      font-size: 20px;
-      font-weight: 700;
-      justify-content: center;
-    }
-
-    .wtx-navBar {
-      background: #04201e;
-      color: #fff;
-    }
-
-    .wtx-YesNobutton:hover,
-    .wtx-navCall {
-      background: #00be50;
-      color: #fff;
-    }
-
-    .wtx-logoWaper {
-      width: 30%;
-      height: auto;
-    }
-
-    .wtx-logo {
-      width: 100%;
-      height: auto;
-    }
-
-    .wtx-navBarWaper {
-      width: 100%;
-      height: 100px;
-      justify-content: space-between;
-    }
-
-    .wtx-YesNobutton,
-    .wtx-navBarButton {
-      align-items: center;
-      display: flex;
-    }
-
-    .wtx-navBarButton {
-      justify-content: right;
-    }
-
-    .wtx-navBarButtonWaper {
-      width: 70%;
-    }
-
-    .wtx-navBarButton span {
-      font-size: 18px;
-      margin-right: 3%;
-    }
-
-    .wtx-navCall {
-      border: none;
-      font-size: 26px;
-      width: 263px;
-      height: 70px;
-      border-radius: 10px;
-      font-weight: 700;
-    }
-
-    .wtx-heroSection {
-      width: 100%;
-      height: 780px;
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .wtx-heroBG,
-    .wtx-overlay {
-      height: 100%;
-    }
-
-    .wtx-heroSectionWaper,
-    .wtx-overlay {
-      background: linear-gradient(180deg, #002c29, #002c29c4);
-      width: 100%;
-    }
-
-    .wtx-heroBG {
-      width: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .wtx-heroSectionWaper {
-      height: 780px;
-      position: relative;
-    }
-
-    .wtx-heroSectionContent {
-      width: 100%;
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      height: auto;
-    }
-
-    .wtx-loadWaper,
-    .wtx-qustionCardContent {
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .wtx-subTitel {
-      width: 70%;
-      margin: 0 auto;
-      font-size: 34px;
-    }
-
-    .wtx-Title,
-    .wtx-tagline {
-      margin: 15px auto 0;
-    }
-
-    .wtx-Title {
-      width: 70%;
-      font-size: 54px;
-    }
-
-    .wtx-Title span {
-      color: #00be50;
-    }
-
-    .wtx-fireImage {
-      width: 24px;
-      height: 24px;
-    }
-
-    .wtx-tagline {
-      font-size: 24px;
-      width: 70%;
-      font-family: pFont;
-    }
-
-    .wtx-Disclaimer,
-    .wtx-copyRight,
-    .wtx-customerReviewContent p,
-    .wtx-lockAndP {
-      font-family: pFontRegular;
-    }
-
-    .wtx-qustionCard,
-    .wtx-qustionCard1 {
-      width: 50%;
-      height: 212px;
-      margin: 3% auto 0;
-      background: #fff;
-      border-radius: 10px;
-      position: relative;
-      overflow: hidden;
-      max-width: 565px;
-    }
-
-    .wtx-qustionCard1 {
-      height: 312px;
-    }
-
-    .wtx-qustionCard img,
-    .wtx-qustionCard1 img {
-      width: 15%;
-      position: absolute;
-      right: -1%;
-    }
-
-    .wtx-qustionCardContent {
-      position: absolute;
-      color: #0c2b29;
-      width: 80%;
-      text-align: center;
-    }
-
-    .wtx-qustionCardContent h3 {
-      font-size: 42px !important;
-      font-weight: 700;
-    }
-
-    .wtx-YesNobuttonWaper {
-      width: 100%;
-      display: flex;
-    }
-
-    .wtx-YesNobutton,
-    .wtx-YesNobutton1 {
-      width: 50%;
-      height: 70px;
-      background: #e4fffd;
-      margin: 10px;
-      font-size: 20px;
-      color: #2ca199;
-      text-decoration: none;
-    }
-
-    .wtx-YesNobuttonWaper img {
-      width: 60%;
-      margin: 0 auto;
-      background: red;
-    }
-
-    .wtx-YesNobutton {
-      justify-content: center;
-      border: 1px solid #2ca199;
-      border-radius: 5px;
-    }
-
-    .wtx-YesNobutton:hover {
-      transition: .5s;
-    }
-
-    .wtx-YesNobutton1 {
-      display: inline-block;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #2ca199;
-      border-radius: 5px;
-      padding-top: 1.5%;
-    }
-
-    .wtx-YesNobutton1 p {
-      font-size: 13px;
-    }
-
-    .wtx-lockAndP {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .wtx-RTMQ,
-    .wtx-realTimeHeader {
-      align-items: center;
-      height: 70px;
-      display: flex;
-    }
-
-    .wtx-realTime {
-      width: 100%;
-      padding: 50PX;
-    }
-
-    .wtx-realTimeWaper {
-      width: 80%;
-      margin: 0 auto;
-      padding: 20px;
-      box-shadow: 0 1px 50px -20px;
-      border-radius: 10px;
-    }
-
-    table {
-      width: 100%;
-    }
-
-    table tr td {
-      width: 25%;
-    }
-
-    .wtx-RTMQ {
-      width: 100%;
-      background: #fbfbfb;
-      border-radius: 10px;
-      border: 1px solid #dfeeff;
-      margin-top: 15px;
-    }
-
-    .wtx-tableRow {
-      padding-left: 20px;
-    }
-
-    .wtx-realTimeHeader {
-      width: 100%;
-      justify-content: center;
-      position: relative;
-      font-size: 34px;
-      background: #fff6e4;
-      border-radius: 10px;
-      border: none;
-    }
-
-    .wtx-realTimeHeader img {
-      float: left;
-      height: 70px;
-      left: 0;
-      position: absolute;
-    }
-
-    .wtx-tableRowNameL {
-      filter: blur(4px);
-    }
-
-    .wtx-customerReview {
-      width: 100%;
-      padding-top: 70px;
-      padding-bottom: 70px;
-    }
-
-    .wtx-customerReviewContent {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .wtx-customerReviewContent h1 {
-      color: #143863;
-      font-size: 44px;
-      font-weight: 700;
-    }
-
-    .wtx-customerReviewContent p {
-      font-size: 16px;
-    }
-
-    .wtx-customerReviewContent img {
-      height: 83px;
-    }
-
-    .wtx-revireCard {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding-top: 30px;
-      padding-bottom: 30px;
-    }
-
-    .wtx-cards {
-      width: 30%;
-      box-shadow: 2px 4px 25px 0 #b5b5b5a8;
-      border-radius: 15px;
-    }
-
-    .wtx-loadWaper {
-      width: 100%;
-      height: auto;
-      position: absolute;
-      color: #0c2b29;
-    }
-
-    .wtx-loadImg {
-      width: 60% !important;
-      position: static !important;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .wtx-congrasButton {
-      width: 300px;
-      display: flex;
-      text-decoration: none;
-      background: #00be50;
-      color: #fff;
-      font-size: 30px;
-      align-items: center;
-      justify-content: center;
-      height: 80px;
-      border-radius: 20px;
-      border: none;
-      margin: 0 auto;
-    }
-
-    .wtx-Highlighted,
-    .wtx-copyRight,
-    .wtx-footer {
-      width: 100%;
-    }
-
-    .wtx-congrasButton img {
-      width: 40px;
-      position: static;
-      padding: 0;
-      margin: 0;
-      background: 0 0;
-    }
-
-    .wtx-footer img,
-    .wtx-footer p {
-      display: block;
-      margin: 0 auto;
-    }
-
-    .wtx-Disclaimer {
-      padding: 70px;
-      background: #f2f8ff;
-    }
-
-    .wtx-Disclaimer p {
-      text-align: justify;
-    }
-
-    .wtx-Highlighted h1,
-    .wtx-copyRight,
-    .wtx-footer p,
-    .wtx-privacyPolicy h1 {
-      text-align: center;
-    }
-
-    .wtx-HighlightedImagesWaper {
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .wtx-HighlightedImagesWaper img {
-      width: 16%;
-    }
-
-    .wtx-Highlighted h1 {
-      color: #114380;
-      font-weight: bolder;
-    }
-
-    .wtx-footer {
-      background: #04201e;
-      height: 250px;
-      padding: 50px;
-      color: #f2f8ff;
-    }
-
-    .wtx-footer img {
-      width: 200px;
-    }
-
-    .wtx-footer a {
-      text-decoration: none;
-      color: #f2f8ff;
-    }
-
-    .wtx-copyRight {
-      background: #051a18;
-      height: 50px;
-      line-height: 50px;
-      color: #f2f8ff;
-    }
-
-    .wtx-copyRight p {
-      opacity: 7;
-    }
-
-    .wtx-privacyPolicy h1 {
-      color: #114380;
-    }
-
-    .wtx-forPc {
-      display: flex;
-    }
-
-    .wtx-forPch {
-      display: inline-block;
-    }
-
-    .wtx-forMobile {
-      display: none !important;
-    }
-
-    @media only screen and (max-width: 600px) {
-      .wtx-alart,
-      .wtx-navBarWaper {
-        width: 100%;
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>savemaxauto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+ 
+</head>
+<style>
+    .Title,.loadWaper,.lockAndP,.subTitel,.tagline,table {
+    text-align: center
+}
+
+.alart,.navBarWaper {
+    display: flex;
+    align-items: center
+}
+
+.heroBG,.overlay {
+    position: absolute
+}
+
+.congrasButton,.navCall {
+    animation: 1s infinite x-shaking
+}
+
+#alart,#heroStep2,#loadImage2,#loadImage3,#realTime,#step2,#step3 {
+    display: none
+}
+
+body {
+    font-family: Oswald
+}
+
+@font-face {
+    font-family: pFont;
+    src: url(../font/SourceSansPro-Semibold.otf)
+}
+
+@font-face {
+    font-family: pFontRegular;
+    src: url(../font/SourceSansPro-Regular.otf)
+}
+
+.alart {
+    background: #ffede0;
+    color: #011733;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 700;
+    justify-content: center
+}
+
+.navBar {
+    background: #04201e;
+    color: #fff
+}
+
+.YesNobutton:hover,.navCall {
+    background: #00be50;
+    color: #fff
+}
+
+.logoWaper {
+    width: 30%;
+    height: auto
+}
+
+.logo {
+    width: 100%;
+    height: auto
+}
+
+.navBarWaper {
+    width: 100%;
+    height: 100px;
+    justify-content: space-between
+}
+
+.YesNobutton,.navBarButton {
+    align-items: center;
+    display: flex
+}
+
+.navBarButton {
+    justify-content: right
+}
+
+.navBarButtonWaper {
+    width: 70%
+}
+
+.navBarButton span {
+    font-size: 18px;
+    margin-right: 3%
+}
+
+.navCall {
+    border: none;
+    font-size: 26px;
+    width: 263px;
+    height: 70px;
+    border-radius: 10px;
+    font-weight: 700
+}
+
+.heroSection {
+    width: 100%;
+    height: 780px;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    overflow: hidden
+}
+
+.heroBG,.overlay {
+    height: 100%
+}
+
+.heroSectionWaper,.overlay {
+    background: linear-gradient(180deg,#002c29,#002c29c4);
+    width: 100%
+}
+
+.heroBG {
+    width: 100%;
+    object-fit: cover;
+    object-position: center
+}
+
+.heroSectionWaper {
+    height: 780px;
+    position: relative
+}
+
+.heroSectionContent {
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: auto
+}
+
+.loadWaper,.qustionCardContent {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%)
+}
+
+.subTitel {
+    width: 70%;
+    margin: 0 auto;
+    font-size: 34px
+}
+
+.Title,.tagline {
+    margin: 15px auto 0
+}
+
+.Title {
+    width: 70%;
+    font-size: 54px
+}
+
+.Title span {
+    color: #00be50
+}
+
+.fireImage {
+    width: 24px;
+    height: 24px
+}
+
+.tagline {
+    font-size: 24px;
+    width: 70%;
+    font-family: pFont
+}
+
+.Disclaimer,.copyRight,.customerReviewContent p,.lockAndP {
+    font-family: pFontRegular
+}
+
+.qustionCard,.qustionCard1 {
+    width: 50%;
+    height: 212px;
+    margin: 3% auto 0;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 565px
+}
+
+.qustionCard1 {
+    height: 312px
+}
+
+.qustionCard img,.qustionCard1 img {
+    width: 15%;
+    position: absolute;
+    right: -1%
+}
+
+.qustionCardContent {
+    position: absolute;
+    color: #0c2b29;
+    width: 80%;
+    text-align: center
+}
+
+.qustionCardContent h3 {
+    font-size: 42px!important;
+    font-weight: 700
+}
+
+.YesNobuttonWaper {
+    width: 100%;
+    display: flex
+}
+
+.YesNobutton,.YesNobutton1 {
+    width: 50%;
+    height: 70px;
+    background: #e4fffd;
+    margin: 10px;
+    font-size: 20px;
+    color: #2ca199;
+    text-decoration: none
+}
+
+.YesNobuttonWaper img {
+    width: 60%;
+    margin: 0 auto;
+    background: red
+}
+
+.YesNobutton {
+    justify-content: center;
+    border: 1px solid #2ca199;
+    border-radius: 5px
+}
+
+.YesNobutton:hover {
+    transition: .5s
+}
+
+.YesNobutton1 {
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2ca199;
+    border-radius: 5px;
+    padding-top: 1.5%
+}
+
+.YesNobutton1 p {
+    font-size: 13px
+}
+
+.lockAndP {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.RTMQ,.realTimeHeader {
+    align-items: center;
+    height: 70px;
+    display: flex
+}
+
+.realTime {
+    width: 100%;
+    padding: 50PX
+}
+
+.realTimeWaper {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 1px 50px -20px;
+    border-radius: 10px
+}
+
+table {
+    width: 100%
+}
+
+table tr td {
+    width: 25%
+}
+
+.RTMQ {
+    width: 100%;
+    background: #fbfbfb;
+    border-radius: 10px;
+    border: 1px solid #dfeeff;
+    margin-top: 15px
+}
+
+.tableRow {
+    padding-left: 20px
+}
+
+.realTimeHeader {
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    font-size: 34px;
+    background: #fff6e4;
+    border-radius: 10px;
+    border: none
+}
+
+.realTimeHeader img {
+    float: left;
+    height: 70px;
+    left: 0;
+    position: absolute
+}
+
+.tableRowNameL {
+    filter: blur(4px)
+}
+
+.customerReview {
+    width: 100%;
+    padding-top: 70px;
+    padding-bottom: 70px
+}
+
+.customerReviewContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.customerReviewContent h1 {
+    color: #143863;
+    font-size: 44px;
+    font-weight: 700
+}
+
+.customerReviewContent p {
+    font-size: 16px
+}
+
+.customerReviewContent img {
+    height: 83px
+}
+
+.revireCard {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+.cards {
+    width: 30%;
+    box-shadow: 2px 4px 25px 0 #b5b5b5a8;
+    border-radius: 15px
+}
+
+.loadWaper {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    color: #0c2b29
+}
+
+.loadImg {
+    width: 60%!important;
+    position: static!important;
+    display: block;
+    margin: 0 auto
+}
+
+.congrasButton {
+    width: 300px;
+    display: flex;
+    text-decoration: none;
+    background: #00be50;
+    color: #fff;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    border-radius: 20px;
+    border: none;
+    margin: 0 auto
+}
+
+.Highlighted,.copyRight,.footer {
+    width: 100%
+}
+
+.congrasButton img {
+    width: 40px;
+    position: static;
+    padding: 0;
+    margin: 0;
+    background: 0 0
+}
+
+.footer img,.footer p {
+    display: block;
+    margin: 0 auto
+}
+
+.Disclaimer {
+    padding: 70px;
+    background: #f2f8ff
+}
+
+.Disclaimer p {
+    text-align: justify
+}
+
+.Highlighted h1,.copyRight,.footer p,.privacyPolicy h1 {
+    text-align: center
+}
+
+.HighlightedImagesWaper {
+    display: flex;
+    justify-content: space-around
+}
+
+.HighlightedImagesWaper img {
+    width: 16%
+}
+
+.Highlighted h1 {
+    color: #114380;
+    font-weight: bolder
+}
+
+.footer {
+    background: #04201e;
+    height: 250px;
+    padding: 50px;
+    color: #f2f8ff
+}
+
+.footer img {
+    width: 200px
+}
+
+.footer a {
+    text-decoration: none;
+    color: #f2f8ff
+}
+
+.copyRight {
+    background: #051a18;
+    height: 50px;
+    line-height: 50px;
+    color: #f2f8ff
+}
+
+.copyRight p {
+    opacity: 7
+}
+
+.privacyPolicy h1 {
+    color: #114380
+}
+
+.forPc {
+    display: flex
+}
+
+.forPch {
+    display: inline-block
+}
+
+.forMobile {
+    display: none!important
+}
+
+@media only screen and (max-width: 600px) {
+    .alart,.navBarWaper {
+        width:100%;
         display: flex;
-        align-items: center;
-      }
+        align-items: center
+    }
 
-      .wtx-alart {
+    .alart {
         background: #ffede0;
         color: #011733;
         height: 50px;
         font-size: 4vw;
-        justify-content: center;
-      }
+        justify-content: center
+    }
 
-      .wtx-heroSectionContent,
-      .wtx-qustionCardContent {
+    .heroSectionContent,.qustionCardContent {
         left: 50%;
-        transform: translate(-50%, -50%);
-        position: absolute;
-      }
+        transform: translate(-50%,-50%);
+        position: absolute
+    }
 
-      .wtx-alart,
-      .wtx-navCall {
-        font-weight: 700;
-      }
+    .alart,.navCall {
+        font-weight: 700
+    }
 
-      .wtx-HighlightedMobile,
-      .wtx-copyRight,
-      .wtx-lockAndP,
-      .wtx-navBarButton,
-      .wtx-qustionCardContent {
-        text-align: center;
-      }
+    .HighlightedMobile,.copyRight,.lockAndP,.navBarButton,.qustionCardContent {
+        text-align: center
+    }
 
-      .wtx-Disclaimer,
-      .wtx-copyRight p,
-      .wtx-navBarButton span {
-        font-family: pFontRegular;
-      }
+    .Disclaimer,.copyRight p,.navBarButton span {
+        font-family: pFontRegular
+    }
 
-      .wtx-congrasButton,
-      .wtx-navCall {
+    .congrasButton,.navCall {
         background: #00be50;
-        color: #fff;
-      }
+        color: #fff
+    }
 
-      .wtx-navBarWaper {
+    .navBarWaper {
         height: auto;
         justify-content: space-between;
         padding-top: 10px;
-        padding-bottom: 10px;
-      }
+        padding-bottom: 10px
+    }
 
-      .wtx-logoWaper {
+    .logoWaper {
         width: 40%;
-        height: auto;
-      }
+        height: auto
+    }
 
-      .wtx-navBarButtonWaper {
-        width: 50%;
-      }
+    .navBarButtonWaper {
+        width: 50%
+    }
 
-      .wtx-navBarButton {
+    .navBarButton {
         width: 100%;
-        display: block;
-      }
+        display: block
+    }
 
-      .wtx-navBarButton span {
+    .navBarButton span {
         font-size: 3vw;
-        margin-right: -1% !important;
-      }
+        margin-right: -1%!important
+    }
 
-      .wtx-navCall {
+    .navCall {
         border: none;
         width: 100%;
         height: 50px;
         border-radius: 10px;
-        font-size: 4.5vw;
-      }
+        font-size: 4.5vw
+    }
 
-      .wtx-navCall img {
-        width: 6vw;
-      }
+    .navCall img {
+        width: 6vw
+    }
 
-      .wtx-heroSectionContent {
+    .heroSectionContent {
         width: 100%;
         top: 45%;
-        height: auto;
-      }
+        height: auto
+    }
 
-      .wtx-subTitel {
+    .subTitel {
         width: 95%;
-        font-size: 6vw;
-      }
+        font-size: 6vw
+    }
 
-      .wtx-Title {
+    .Title {
         width: 95%;
-        font-size: 11.5vw;
-      }
+        font-size: 11.5vw
+    }
 
-      .wtx-tagline {
+    .tagline {
         width: 95%;
         height: 40px;
-        font-size: 4.5vw;
-      }
+        font-size: 4.5vw
+    }
 
-      .wtx-YesNobutton1 p,
-      .wtx-lockAndP {
-        font-size: 3vw;
-      }
+    .YesNobutton1 p,.lockAndP {
+        font-size: 3vw
+    }
 
-      .wtx-qustionCard,
-      .wtx-qustionCard1 {
+    .qustionCard,.qustionCard1 {
         width: 95%;
         height: 212px;
-        margin-top: 20px;
-      }
+        margin-top: 20px
+    }
 
-      .wtx-lockAndP {
+    .lockAndP {
         width: 95%;
-        margin-top: 20px !important;
-        margin: 0 auto;
-      }
+        margin-top: 20px!important;
+        margin: 0 auto
+    }
 
-      .wtx-heroSection,
-      .wtx-heroSectionWaper {
-        height: 100vh;
-      }
+    .heroSection,.heroSectionWaper {
+        height: 100vh
+    }
 
-      .wtx-congrasButton {
+    .congrasButton {
         width: 100%;
         display: flex;
         text-decoration: none;
@@ -672,390 +619,396 @@
         height: 80px;
         border-radius: 20px;
         border: none;
-        margin: 0 auto;
-      }
+        margin: 0 auto
+    }
 
-      .wtx-qustionCardContent {
+    .qustionCardContent {
         top: 50%;
         color: #0c2b29;
-        width: 95%;
-      }
+        width: 95%
+    }
 
-      .wtx-copyRight,
-      .wtx-footer {
+    .copyRight,.footer {
         color: #f2f8ff;
-        width: 100%;
-      }
+        width: 100%
+    }
 
-      .wtx-realTime {
-        padding: 30px 10px;
-      }
+    .realTime {
+        padding: 30px 10px
+    }
 
-      .wtx-realTimeWaper {
+    .realTimeWaper {
         width: 100%;
         margin: 0 auto;
         padding: 20px;
         box-shadow: 0 1px 50px -20px;
-        border-radius: 10px;
-      }
+        border-radius: 10px
+    }
 
-      .wtx-realTimeHeader {
+    .realTimeHeader {
         font-size: 7vw;
         justify-content: right;
-        padding-right: 30px;
-      }
+        padding-right: 30px
+    }
 
-      table tr td {
+    table tr td {
         width: 25%;
-        font-size: 4vw;
-      }
+        font-size: 4vw
+    }
 
-      .wtx-tableRow {
-        padding: 10px;
-      }
+    .tableRow {
+        padding: 10px
+    }
 
-      .wtx-customerReviewContent {
+    .customerReviewContent {
         display: block;
-        text-align: center;
-      }
+        text-align: center
+    }
 
-      .wtx-customerReviewContent2nd {
+    .customerReviewContent2nd {
         width: 95%;
         display: block;
-        margin: 0 auto;
-      }
+        margin: 0 auto
+    }
 
-      .wtx-customerReviewContent2nd img {
-        width: 100%;
-      }
+    .customerReviewContent2nd img {
+        width: 100%
+    }
 
-      .wtx-revireCard {
-        display: block;
-      }
+    .revireCard {
+        display: block
+    }
 
-      .wtx-cards {
+    .cards {
         width: 95%;
         display: block;
         margin: 20px auto 0;
-        border-radius: 5px;
-      }
+        border-radius: 5px
+    }
 
-      .wtx-customerReview {
+    .customerReview {
         width: 100%;
         padding-top: 30px;
-        padding-bottom: 30px;
-      }
+        padding-bottom: 30px
+    }
 
-      .wtx-qustionCard img,
-      .wtx-qustionCard1 img {
+    .qustionCard img,.qustionCard1 img {
         width: 15%;
         height: 25%;
         position: absolute;
-        right: -1%;
-      }
+        right: -1%
+    }
 
-      .wtx-congrasButton img {
+    .congrasButton img {
         width: 40px;
         height: auto;
         position: static;
         padding: 0;
         margin: 0;
-        background: 0 0;
-      }
+        background: 0 0
+    }
 
-      .wtx-Disclaimer {
+    .Disclaimer {
         padding: 20px;
-        background: #f2f8ff;
-      }
+        background: #f2f8ff
+    }
 
-      .wtx-HighlightedMobile h1 {
+    .HighlightedMobile h1 {
         color: #114380;
-        font-weight: 700;
-      }
+        font-weight: 700
+    }
 
-      .wtx-HighlightedImagesWaperMobile {
+    .HighlightedImagesWaperMobile {
         display: flex;
         align-items: center;
-        justify-content: center;
-      }
+        justify-content: center
+    }
 
-      .wtx-HighlightedImagesWaperMobile img {
-        width: 30%;
-      }
+    .HighlightedImagesWaperMobile img {
+        width: 30%
+    }
 
-      .wtx-forPc {
-        display: none !important;
-      }
+    .forPc {
+        display: none!important
+    }
 
-      .wtx-forPcH {
-        display: none;
-      }
+    .forPcH {
+        display: none
+    }
 
-      .wtx-forMobile {
-        display: block !important;
-      }
+    .forMobile {
+        display: block!important
+    }
 
-      .wtx-footer {
+    .footer {
         background: #04201e;
         height: auto;
         padding: 20px;
-        font-size: 15px;
-      }
+        font-size: 15px
+    }
 
-      .wtx-copyRight {
+    .copyRight {
         background: #051a18;
         height: 50;
         line-height: 50px;
-        font-size: 12px;
-      }
+        font-size: 12px
+    }
 
-      .wtx-copyRight p {
+    .copyRight p {
         padding: 0;
         margin: 0;
-        opacity: 70%;
-      }
+        opacity: 70%
     }
+}
 
-    /* Site name styles */
-    .wtx-logo-text-center {
-      color: #00be50;
-      font-size: 28px;
-      font-weight: 700;
-      text-decoration: none;
-      font-family: Oswald;
-      text-align: center;
-      display: block;
-    }
+/* Стили для названия сайта */
+.logo-text-center {
+    color: #00be50;
+    font-size: 28px;
+    font-weight: 700;
+    text-decoration: none;
+    font-family: Oswald;
+    text-align: center;
+    display: block;
+}
 
-    .wtx-logo-text-center:hover {
-      color: #00be50;
-      text-decoration: none;
-    }
+.logo-text-center:hover {
+    color: #00be50;
+    text-decoration: none;
+}
 
-    .wtx-footer-logo-text {
-      color: #00be50;
-      font-size: 32px;
-      font-weight: 700;
-      text-align: center;
-      font-family: Oswald;
-      margin: 0 auto;
-      display: block;
-    }
+.footer-logo-text {
+    color: #00be50;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    font-family: Oswald;
+    margin: 0 auto;
+    display: block;
+}
 
-    /* Center navbar */
-    .wtx-navBarWaper {
-      justify-content: center !important;
-    }
+/* Выравнивание навбара по центру */
+.navBarWaper {
+    justify-content: center !important;
+}
 
-    .wtx-logoWaper {
-      width: 100% !important;
-      text-align: center;
-    }
+.logoWaper {
+    width: 100% !important;
+    text-align: center;
+}
 
-    /* Mobile site name */
-    @media only screen and (max-width: 600px) {
-      .wtx-logo-text-center {
+/* Мобильные стили для названия сайта */
+@media only screen and (max-width: 600px) {
+    .logo-text-center {
         font-size: 6vw;
-      }
+    }
 
-      .wtx-footer-logo-text {
+    .footer-logo-text {
         font-size: 7vw;
-      }
+    }
 
-      .wtx-navBarWaper {
+    .navBarWaper {
         justify-content: center !important;
-      }
+    }
 
-      .wtx-logoWaper {
+    .logoWaper {
         width: 100% !important;
-      }
     }
+}
 
-    /* Age buttons */
-    .wtx-ageButtonWaper {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 20px;
-    }
+/* Стили для возрастных кнопок */
+.ageButtonWaper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
 
-    .wtx-ageButton {
-      width: 100%;
-      height: 70px;
-      background: #e4fffd;
-      color: #2ca199;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #2ca199;
-      border-radius: 5px;
-      font-size: 24px;
-      font-weight: 700;
-      transition: 0.5s;
-    }
+.ageButton {
+    width: 100%;
+    height: 70px;
+    background: #e4fffd;
+    color: #2ca199;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #2ca199;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: 700;
+    transition: 0.5s;
+}
 
-    .wtx-ageButton:hover {
-      background: #00be50;
-      color: #fff;
-    }
+.ageButton:hover {
+    background: #00be50;
+    color: #fff;
+}
 
-    @media only screen and (max-width: 600px) {
-      .wtx-ageButtonWaper {
+/* Мобильные стили для возрастных кнопок */
+@media only screen and (max-width: 600px) {
+    .ageButtonWaper {
         grid-template-columns: 1fr 1fr;
         gap: 8px;
         margin-top: 15px;
-      }
+    }
 
-      .wtx-ageButton {
+    .ageButton {
         height: 60px;
         font-size: 5vw;
         font-weight: 700;
-      }
+    }
+}
+
+@keyframes x-shaking {
+    0% {
+        transform: translateX(0);
+        transform: rotate(0)
     }
 
-    @keyframes wtx-x-shaking {
-      0% { transform: translateX(0); transform: rotate(0); }
-      5%, 15% { transform: translateX(10px); transform: rotate(5deg); }
-      10% { transform: translateX(-10px); transform: rotate(-5deg); }
-      20%, 100% { transform: translateX(0); }
+    15%,5% {
+        transform: translateX(10px);
+        transform: rotate(5deg)
     }
-  </style>
-</head>
+
+    10% {
+        transform: translateX(-10px);
+        transform: rotate(-5deg)
+    }
+
+    100%,20% {
+        transform: translateX(0)
+    }
+}
+
+</style>
 
 <body>
-  <div class="wtx-alart" id="wtx-alart">
-    <span>🚨 LAST CHANCE: Your Low Rate Expires Soon! 🚨</span>
-  </div>
-
-  <div class="wtx-navBar">
-    <div class="wtx-navBarWaper container">
-      <div class="wtx-logoWaper">
-        <a class="wtx-logo-text-center">SaveMaxAuto</a>
-      </div>
+    <div class="alart" id="alart">
+        <span>🚨 LAST CHANCE: Your Low Rate Expires Soon! 🚨</span>
     </div>
-  </div>
-
-  <div class="wtx-heroSection">
-    <div class="wtx-heroSectionWaper">
-      <img loading="lazy" src="heroBG.webp" alt="heroBG" class="wtx-heroBG">
-      <div class="wtx-overlay"></div>
-
-      <div class="wtx-heroSectionContent" id="wtx-heroStep1">
-        <h3 class="wtx-subTitel">This is the Biggest Secret of 2025.</h3>
-        <h1 class="wtx-Title">Drivers Are Saving Up to <span>$710/month.</span></h1>
-
-        <p class="wtx-tagline">
-          <img loading="lazy" src="/fireImage.png" alt="fireImage.webp" class="wtx-fireImage">
-          You're Just One Click Away From It.
-        </p>
-
-        <div id="wtx-step1">
-          <div class="wtx-qustionCard container">
-            <img loading="lazy" src="roundIcon.svg" alt="roundIcon.svg">
-            <div class="wtx-qustionCardContent">
-              <h3>Are You Currently Insured?</h3>
-              <div class="wtx-ageButtonWaper">
-                <a class="wtx-ageButton" href="">Yes</a>
-                <a class="wtx-ageButton" href="">No</a>
-              </div>
+    <div class="navBar">
+        <div class="navBarWaper container">
+            <div class="logoWaper">
+                <a class="logo-text-center">SaveMaxAuto</a>
             </div>
-          </div>
         </div>
-
-        <p class="wtx-lockAndP">
-          We keep all your information 100% secure & confidential, always.
-        </p>
-      </div>
     </div>
-  </div>
+    <div class="heroSection">
+        <div class="heroSectionWaper">
+            <img loading="lazy" src="heroBG.webp" alt="heroBG" class="heroBG">
+            <div class="overlay"></div>
+            <div class="heroSectionContent" id="heroStep1">
 
-  <div class="container">
-    <div class="wtx-customerReview" id="wtx-review">
-      <div class="wtx-customerReviewContent">
-        <div>
-          <h1>Customer Reviews</h1>
-          <p>Real feedback from real drivers. Learn how we’ve helped our customers save on auto insurance.</p>
-        </div>
-        <div>
-          <img loading="lazy" src="./trustpilot.svg" alt="trustpilot">
-        </div>
-      </div>
+             <h3 class="subTitel">This is the Biggest Secret of 2026.</h3>
+                <h1 class="Title">Drivers Are Saving Up to <span>$710/month.</span></h1>
+                <p class="tagline"><img loading="lazy" src="/fireImage.png" alt="fireImage.webp"
+                        class="fireImage">You're Just One Click Away From It.</p>
 
-      <div class="wtx-customerReviewContent2nd mt-3"></div>
+                <div id="step1">
+                    <div class="qustionCard container">
+                        <img loading="lazy" src="roundIcon.svg" alt="roundIcon.svg">
+                        <div class="qustionCardContent">
+                            <h3>Are You Currently Insured?</h3>
+                            <div class="ageButtonWaper">
+                                <a class="ageButton" href="">
+                                    Yes
+                                </a>
+                                <a class="ageButton" href="">
+                                    No
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-      <div id="carouselExample" class="carousel slide wtx-forPc mt-5">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="wtx-revireCard">
-              <img loading="lazy" src="./Reviewcard1.png" alt="" class="wtx-cards">
-              <img loading="lazy" src="./Reviewcard2.png" alt="" class="wtx-cards">
-              <img loading="lazy" src="./Reviewcard3.png" alt="" class="wtx-cards">
+                <p class="lockAndP">
+                    <!-- <img loading="lazy" src="lock.png" alt="roundIcon.svg" class="me-2"> -->
+                    We keep all your
+                    information 100% secure & confidential, always.</p>
             </div>
-          </div>
-          <div class="carousel-item">
-            <div class="wtx-revireCard">
-              <img loading="lazy" src="Reviewcard4.png" alt="" class="wtx-cards">
-              <img loading="lazy" src="Reviewcard5.png" alt="" class="wtx-cards">
-              <img loading="lazy" src="Reviewcard6.png" alt="" class="wtx-cards">
-            </div>
-          </div>
-        </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-
-      <div class="wtx-forMobile">
-        <div class="wtx-revireCard">
-          <img loading="lazy" src="Reviewcard1.png" alt="" class="wtx-cards">
-          <img loading="lazy" src="Reviewcard2.png" alt="" class="wtx-cards">
-          <img loading="lazy" src="Reviewcard3.png" alt="" class="wtx-cards">
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="wtx-Disclaimer">
     <div class="container">
-      <p class="text-justify">
-        <b>Disclaimer: </b>We do not offer every plan available in your area. We represent multiple organizations with various products in your region. To get full information, please consult your state's Department of Insurance or a licensed insurance agent before making decisions.
-        We are not affiliated with or endorsed by any government agency or insurance regulator.
-        Insurance carriers may offer various coverage types that are subject to eligibility requirements. Availability, pricing, and terms depend on provider, location, vehicle, and state regulations.
-        This site provides general information only and does not offer professional financial, legal and insurance advice.
-        This is an advertisement, not a news article, consumer report, and regulatory update. We may receive compensation for clicks or sales, which can influence ad placement and company rankings.
-      </p>
+        <div class="customerReview" id="review">
+            <div class="customerReviewContent">
+                <div>
+                    <h1>Customer Reviews</h1>
+                    <p>Real feedback from real drivers. Learn how we’ve helped our customers save on auto insurance.</p>
+                </div>
+                <div>
+                    <img loading="lazy" src="./trustpilot.svg" alt="trustpilot">
+                </div>
+            </div>
+            <div class="customerReviewContent2nd mt-3">
+                <!-- <img loading="lazy" src="./TrustpilotMicro.svg" alt="TrustpilotMicro"> -->
+            </div>
+            <div id="carouselExample" class="carousel slide forPc mt-5">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="revireCard">
+                            <img loading="lazy" src="./Reviewcard1.png" alt="" class="cards">
+                            <img loading="lazy" src="./Reviewcard2.png" alt="" class="cards">
+                            <img loading="lazy" src="./Reviewcard3.png" alt="" class="cards">
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="revireCard">
+                            <img loading="lazy" src="Reviewcard4.png" alt="" class="cards">
+                            <img loading="lazy" src="Reviewcard5.png" alt="" class="cards">
+                            <img loading="lazy" src="Reviewcard6.png" alt="" class="cards">
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="forMobile">
+                <div class="revireCard">
+                    <img loading="lazy" src="Reviewcard1.png" alt="" class="cards">
+                    <img loading="lazy" src="Reviewcard2.png" alt="" class="cards">
+                    <img loading="lazy" src="Reviewcard3.png" alt="" class="cards">
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="Disclaimer">
+        <div class="container">
+            <p class="text-justify">
+                <b>Disclaimer: </b>We do not offer every plan available in your area. We represent multiple organizations with various products in your region. To get full information, please consult your state's Department of Insurance or a licensed insurance agent before making decisions. 
+We are not affiliated with or endorsed by any government agency or insurance regulator.
+Insurance carriers may offer various coverage types that are subject to eligibility requirements. Availability, pricing, and terms depend on provider, location, vehicle, and state regulations.
+This site provides general information only and does not offer professional financial, legal and insurance advice.  
+This is an advertisement, not a news article, consumer report, and regulatory update. We may receive compensation for clicks or sales, which can influence ad placement and company rankings.
+            </p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-logo-text">SaveMaxAuto</div>
+        <p class="mt-4"><a href="privacy.html" class="me-3">PRIVACY POLICY</a> | <a href="terms.html"
+                class="ms-3">TERMS & CONDITIONS</a>
+        </p>
+        <p class="mt-3">DO NOT SELL OR SHARE MY PERSONAL INFORMATION / PRIVACY RIGHTS FOR RESIDENTS OF CERTAIN STATES </br>
+        GENESIS E-COM GROUP LLC, 30 N GOULD ST STE R SHERIDAN, WY 82801 USA
+        </p>
+    </div>
+    <div class="copyRight">
+        Copyright © 2026 SaveMaxAuto.com. All Rights Reserved
+    </div>
 
-  <div class="wtx-footer">
-    <div class="wtx-footer-logo-text">SaveMaxAuto</div>
-    <p class="mt-4">
-      <a href="privacy.html" class="me-3">PRIVACY POLICY</a> |
-      <a href="terms.html" class="ms-3">TERMS & CONDITIONS</a>
-    </p>
-    <p class="mt-3">
-      DO NOT SELL OR SHARE MY PERSONAL INFORMATION / PRIVACY RIGHTS FOR RESIDENTS OF CERTAIN STATES <br>
-      GENESIS E-COM GROUP LLC, 30 N GOULD ST STE R SHERIDAN, WY 82801 USA
-    </p>
-  </div>
 
-  <div class="wtx-copyRight">
-    Copyright © 2025 SaveMaxAuto.com. All Rights Reserved
-  </div>
-
-  <!-- If you use bootstrap JS components (carousel), include this: -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"
-  ></script>
+ 
 </body>
+
 </html>
